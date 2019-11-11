@@ -1,2 +1,3 @@
-ls -F -m -t
+ls -F -m | sort -k1n
+
 
