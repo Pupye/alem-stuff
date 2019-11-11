@@ -1,4 +1,4 @@
-ls -F -m | sed -n 's/\/$//p'
+ls -p -m -t
 
 
 
