@@ -1,3 +1,4 @@
-ls -F -m | sort -k1n
+ls -F -m | sed -n 's/\/$//p'
+
 
 
