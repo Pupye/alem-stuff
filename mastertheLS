@@ -1,4 +1,1 @@
-ls -p -m -t | tr -s "\t" "''"
-
-
-
+ls -p -m -t | tr -d "[:space:]"
