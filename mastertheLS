@@ -2,3 +2,4 @@ ls -F -m | sed -n 's/\/$//p'
 
 
 
+sdsad
