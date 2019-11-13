@@ -1,2 +1,2 @@
- find . -not -path '*/\.*' ! -path . | grep -c /
+find . -not -path '*/\.*' | grep -c ^.
 
