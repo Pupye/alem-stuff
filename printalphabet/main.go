@@ -9,4 +9,4 @@ func main() {
 	for i := 0; i < len(alph); i++ {
 		z01.PrintRune(rune(alph[i]))
 	}
-}
+}sd
