@@ -28,11 +28,9 @@ func PrintComb() {
 							z01.PrintRune(44)
 							z01.PrintRune(32)
 						}
-
 						count++
 					}
 				}
-
 				k++
 			}
 			j++
