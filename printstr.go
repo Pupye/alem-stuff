@@ -8,5 +8,4 @@ func PrintStr(str string) {
 	for s := range str {
 		z01.PrintRune(mutableStr[s])
 	}
-	z01.PrintRune('\n')
 }
