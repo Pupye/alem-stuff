@@ -18,7 +18,14 @@ func PrintNbrInOrder(n int) {
 func sortIntegerTable(table []int) {
 	key := 0
 	j := 0
-	for index := 1; index < len(table); index++ {
+
+	length := 0
+	for s := range table {
+		length = s
+	}
+	length++
+
+	for index := 1; index < length; index++ {
 		key = table[index]
 		j = index - 1
 
