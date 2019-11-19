@@ -6,16 +6,18 @@ import (
 
 //PrintNbrInOrder is a function that prints digits in order
 func PrintNbrInOrder(n int) {
-	var digits []int
-	for n >= 10 {
-		digit := n % 10
-		n = n / 10
-		digits = append(digits, digit)
-	}
-	digits = append(digits, n)
-	sortIntegerTable(digits)
-	for x := range digits {
-		z01.PrintRune(rune(digits[x]) + 48)
+	if n > -1 {
+		var digits []int
+		for n >= 10 {
+			digit := n % 10
+			n = n / 10
+			digits = append(digits, digit)
+		}
+		digits = append(digits, n)
+		sortIntegerTable(digits)
+		for x := range digits {
+			z01.PrintRune(rune(digits[x]) + 48)
+		}
 	}
 }
 
