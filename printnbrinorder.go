@@ -1,0 +1,31 @@
+package piscine
+
+//PrintNbrInOrder is a function that prints digits in order
+func PrintNbrInOrder(n int) {
+	var digits []int
+	for n >= 10 {
+		digit := n % 10
+		n = n / 10
+		digits = append(digits, digit)
+	}
+	digits = append(digits, n)
+	sortIntegerTable(digits)
+	for x := range digits {
+		print(digits[x])
+	}
+}
+
+func sortIntegerTable(table []int) {
+	key := 0
+	j := 0
+	for index := 1; index < len(table); index++ {
+		key = table[index]
+		j = index - 1
+
+		for j >= 0 && table[j] > key {
+			table[j+1] = table[j]
+			j = j - 1
+		}
+		table[j+1] = key
+	}
+}
