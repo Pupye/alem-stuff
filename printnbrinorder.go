@@ -1,5 +1,9 @@
 package piscine
 
+import (
+	"github.com/01-edu/z01"
+)
+
 //PrintNbrInOrder is a function that prints digits in order
 func PrintNbrInOrder(n int) {
 	var digits []int
@@ -11,7 +15,7 @@ func PrintNbrInOrder(n int) {
 	digits = append(digits, n)
 	sortIntegerTable(digits)
 	for x := range digits {
-		print(digits[x])
+		z01.PrintRune(rune(digits[x]) + 48)
 	}
 }
 
