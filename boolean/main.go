@@ -6,8 +6,7 @@ import (
 	"github.com/01-edu/z01"
 )
 
-func printStr(str string) {
-	arrayStr := []rune(str)
+func printStr(arrayStr []rune) {
 
 	for i := 0; i < getLenOfargRune(arrayStr); i++ {
 		z01.PrintRune(arrayStr[i])
@@ -28,9 +27,13 @@ func main() {
 
 	lengthOfArg := getLenOfarg(arguments)
 	if isEven(lengthOfArg) {
-		printStr("I have an even number of arguments")
+		myMessage := []rune{73, 32, 104, 97, 118, 101, 32, 97, 110, 32, 101, 118, 101, 110, 32, 110, 117, 109, 98, 101, 114, 32, 111, 102, 32, 97, 114, 103, 117, 109, 101, 110, 116, 115}
+
+		printStr(myMessage)
 	} else {
-		printStr("I have an odd number of arguments")
+		mySecond := []rune{73, 32, 104, 97, 118, 101, 32, 97, 110, 32, 111, 100, 100, 32, 110, 117, 109, 98, 101, 114, 32, 111, 102, 32, 97, 114, 103, 117, 109, 101, 110, 116, 115}
+
+		printStr(mySecond)
 	}
 }
 
@@ -55,7 +58,7 @@ func getLenOfargRune(args []rune) int {
 		isEmpty = false
 		length = index
 	}
-	if isEmpty {
+	if !isEmpty {
 		length++
 		return length
 	}
