@@ -78,7 +78,7 @@ func printAsRuneInt(param int) {
 func getRune(number int) rune {
 	var retRes rune
 	if number > 9 {
-		println("we have troubles")
+		z01.PrintRune('-')
 	} else {
 
 		for index := 0; index < number; index++ {
