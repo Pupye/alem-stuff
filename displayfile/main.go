@@ -19,6 +19,7 @@ func main() {
 			fmt.Println(err.Error())
 		} else {
 			fmt.Printf("%s", content)
+			fmt.Print("\n")
 		}
 	}
 
