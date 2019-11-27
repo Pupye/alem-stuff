@@ -3,12 +3,22 @@ package piscine
 //IsSorted is a function
 func IsSorted(f func(a, b int) int, tab []int) bool {
 	length := getLenIsSortedF(tab)
-
+	isNotAccending := false
 	for index := 0; index < length-1; index++ {
 		if f(tab[index], tab[index+1]) > 0 {
-			return false
+			isNotAccending = true
+			break
 		}
 	}
+
+	if isNotAccending {
+		for index := 0; index < length-1; index++ {
+			if f(tab[index], tab[index+1]) < 0 {
+				return false
+			}
+		}
+	}
+
 	return true
 }
 
