@@ -14,86 +14,62 @@ func main() {
 	}
 
 	operatorType := getOperatorType(arguments[1])
-	argValid := isValidValues(arguments[0], arguments[2])
+	validValues := isValidValues(arguments[0], arguments[2])
 
-	if operatorType == -1 || !argValid {
-		z01.PrintRune('0')
-		z01.PrintRune('\n')
+	if operatorType == -1 || !validValues {
+		printStrForDoop("0\n")
 		return
-	} else if operatorType == 1 {
-		//here we sure that args are valid
-		n1, isOverFlow1 := atoiForDoop(arguments[0])
-		n2, isOverFlow2 := atoiForDoop(arguments[2])
-		if isOverFlow1 || isOverFlow2 {
-		} else {
+	}
+	printResultOfOperation(arguments[0], arguments[2], operatorType)
 
-			if operationOverFlow(n1, n2, 1) {
+}
 
-			} else {
-
-			}
-		}
-	} else if operatorType == 2 {
-		n1, isOverFlow1 := atoiForDoop(arguments[0])
-		n2, isOverFlow2 := atoiForDoop(arguments[2])
-		if isOverFlow1 || isOverFlow2 {
-		} else {
-
-			if operationOverFlow(n1, n2, 2) {
-
-			} else {
-
-			}
-		}
-	} else if operatorType == 3 {
-
-		n1, isOverFlow1 := atoiForDoop(arguments[0])
-		n2, isOverFlow2 := atoiForDoop(arguments[2])
-		if isOverFlow1 || isOverFlow2 {
-
-		} else {
-
-			if operationOverFlow(n1, n2, 3) {
-
-			} else {
-
-			}
-		}
-	} else if operatorType == 4 {
-		if arguments[2] == "0" {
-			z01.PrintRune('k')
-		} else {
-			n1, isOverFlow1 := atoiForDoop(arguments[0])
-			n2, isOverFlow2 := atoiForDoop(arguments[2])
-			if isOverFlow1 || isOverFlow2 {
-
-			} else {
-
-				if operationOverFlow(n1, n2, 4) {
-
-				} else {
-
-				}
-			}
-		}
-	} else if operatorType == 5 {
-		if arguments[2] == "0" {
-			z01.PrintRune('k')
-		}
-		n1, isOverFlow1 := atoiForDoop(arguments[0])
-		n2, isOverFlow2 := atoiForDoop(arguments[2])
-		if isOverFlow1 || isOverFlow2 {
-
-		} else {
-
-			if operationOverFlow(n1, n2, 1) {
-
-			} else {
-
-			}
-		}
+func printResultOfOperation(value1, value2 string, operationType int) {
+	n1, overFlowCheck1 := atoiForDoop(value1)
+	n2, overFlowCheck2 := atoiForDoop(value2)
+	if overFlowCheck1 || overFlowCheck2 {
+		printStrForDoop("0\n")
+		return
 	}
 
+	operationOverFlowCheck := operationOverFlow(n1, n2, operationType)
+	if operationOverFlowCheck {
+		printStrForDoop("0\n")
+		return
+	}
+
+	if operationType == 1 {
+
+		printAsIntAsRune(n1 + n2)
+		z01.PrintRune('\n')
+	} else if operationType == 2 {
+		printAsIntAsRune(n1 - n2)
+		z01.PrintRune('\n')
+	} else if operationType == 3 {
+		printAsIntAsRune(n1 * n2)
+		z01.PrintRune('\n')
+	} else if operationType == 4 {
+		if n2 == 0 {
+			printStrForDoop("No division by 0\n")
+			return
+		}
+		printAsIntAsRune(n1 / n2)
+		z01.PrintRune('\n')
+	} else if operationType == 5 {
+		if n2 == 0 {
+			printStrForDoop("No Modulo by 0\n")
+			return
+		}
+		printAsIntAsRune(n1 % n2)
+		z01.PrintRune('\n')
+	}
+}
+
+func printStrForDoop(str string) {
+	arrayRune := []rune(str)
+	for _, s := range arrayRune {
+		z01.PrintRune(s)
+	}
 }
 
 func isValidValues(n1, n2 string) bool {
@@ -253,10 +229,73 @@ func operationOverFlow(n1 int64, n2 int64, argType int) bool {
 		if res != 0 && res/n1 != n2 {
 			return true
 		}
-	} else if argType == 4 {
-		return false
-	} else if argType == 5 {
-		return false
 	}
 	return false
+}
+
+func printAsIntAsRune(param int64) {
+	if param == 0 {
+		z01.PrintRune('0')
+	} else {
+
+		if param < 0 {
+			param = param * -1
+			z01.PrintRune('-')
+		}
+
+		if param < 10 {
+			z01.PrintRune(getRune(param))
+		} else {
+			var decim int64 = 10
+			if param > 1000000000000000000 {
+				decim = 1000000000000000000
+			} else {
+				for param >= decim*10 {
+					decim *= 10
+				}
+			}
+			isDone := false
+			for param >= 10 && !isDone {
+				if param%decim == 0 {
+					startDigit := param / decim
+					z01.PrintRune(getRune(startDigit))
+					for decim > 1 {
+						z01.PrintRune('0')
+						decim = decim / 10
+						isDone = true
+					}
+				} else {
+					startDigit := param / decim
+					param = param - startDigit*decim
+					decim /= 10
+					z01.PrintRune(getRune(startDigit))
+				}
+			}
+			if !isDone {
+				if decim > 1 {
+					for decim > 1 {
+						z01.PrintRune('0')
+						decim = decim / 10
+						isDone = true
+					}
+				}
+				z01.PrintRune(getRune(param))
+			}
+
+		}
+	}
+}
+
+func getRune(number int64) rune {
+	var retRes rune
+	if number > 9 {
+		z01.PrintRune('-')
+	} else {
+		var index int64 = 0
+		for ; index < number; index++ {
+			retRes++
+		}
+
+	}
+	return retRes + 48
 }
