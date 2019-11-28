@@ -4,7 +4,7 @@ package piscine
 func Compact(ptr *[]string) int {
 	count := 0
 	for index := range *ptr {
-		if (*ptr)[index] == "" {
+		if (*ptr)[index] != "" {
 			count++
 		}
 	}
