@@ -7,99 +7,103 @@ import (
 )
 
 func main() {
-	arguments := os.Args[1:]
-	length := getLenIsSortedFDoop(arguments)
-	if length != 3 {
-	} else {
-		operatorValid := isValid(arguments[1])
-		argValid := isValidArguments(arguments[0], arguments[2])
-		if operatorValid == -1 || !argValid {
-			z01.PrintRune('0')
-			z01.PrintRune('\n')
-		} else if operatorValid == 1 {
-			//here we sure that args are valid
-			n1, isOverFlow1 := atoiForDoop(arguments[0])
-			n2, isOverFlow2 := atoiForDoop(arguments[2])
-			if isOverFlow1 || isOverFlow2 {
-			} else {
+	arguments := os.Args[1:]                 //getting here arguments
+	length := getLenIsSortedFDoop(arguments) //getting length of the argument
+	if length != 3 {                         // checking whether the argument is only 3
+		return
+	}
 
-				if operationOverFlow(n1, n2, 1) {
+	operatorType := getOperatorType(arguments[1])
+	argValid := isValidValues(arguments[0], arguments[2])
 
-				} else {
+	if operatorType == -1 || !argValid {
+		z01.PrintRune('0')
+		z01.PrintRune('\n')
+		return
+	} else if operatorType == 1 {
+		//here we sure that args are valid
+		n1, isOverFlow1 := atoiForDoop(arguments[0])
+		n2, isOverFlow2 := atoiForDoop(arguments[2])
+		if isOverFlow1 || isOverFlow2 {
+		} else {
 
-				}
-			}
-		} else if operatorValid == 2 {
-			n1, isOverFlow1 := atoiForDoop(arguments[0])
-			n2, isOverFlow2 := atoiForDoop(arguments[2])
-			if isOverFlow1 || isOverFlow2 {
-			} else {
-
-				if operationOverFlow(n1, n2, 2) {
-
-				} else {
-
-				}
-			}
-		} else if operatorValid == 3 {
-
-			n1, isOverFlow1 := atoiForDoop(arguments[0])
-			n2, isOverFlow2 := atoiForDoop(arguments[2])
-			if isOverFlow1 || isOverFlow2 {
+			if operationOverFlow(n1, n2, 1) {
 
 			} else {
 
-				if operationOverFlow(n1, n2, 3) {
-
-				} else {
-
-				}
 			}
-		} else if operatorValid == 4 {
-			if arguments[2] == "0" {
-				z01.PrintRune('k')
+		}
+	} else if operatorType == 2 {
+		n1, isOverFlow1 := atoiForDoop(arguments[0])
+		n2, isOverFlow2 := atoiForDoop(arguments[2])
+		if isOverFlow1 || isOverFlow2 {
+		} else {
+
+			if operationOverFlow(n1, n2, 2) {
+
 			} else {
-				n1, isOverFlow1 := atoiForDoop(arguments[0])
-				n2, isOverFlow2 := atoiForDoop(arguments[2])
-				if isOverFlow1 || isOverFlow2 {
 
-				} else {
-
-					if operationOverFlow(n1, n2, 4) {
-
-					} else {
-
-					}
-				}
 			}
-		} else if operatorValid == 5 {
-			if arguments[2] == "0" {
-				z01.PrintRune('k')
+		}
+	} else if operatorType == 3 {
+
+		n1, isOverFlow1 := atoiForDoop(arguments[0])
+		n2, isOverFlow2 := atoiForDoop(arguments[2])
+		if isOverFlow1 || isOverFlow2 {
+
+		} else {
+
+			if operationOverFlow(n1, n2, 3) {
+
+			} else {
+
 			}
+		}
+	} else if operatorType == 4 {
+		if arguments[2] == "0" {
+			z01.PrintRune('k')
+		} else {
 			n1, isOverFlow1 := atoiForDoop(arguments[0])
 			n2, isOverFlow2 := atoiForDoop(arguments[2])
 			if isOverFlow1 || isOverFlow2 {
 
 			} else {
 
-				if operationOverFlow(n1, n2, 1) {
+				if operationOverFlow(n1, n2, 4) {
 
 				} else {
 
 				}
 			}
 		}
+	} else if operatorType == 5 {
+		if arguments[2] == "0" {
+			z01.PrintRune('k')
+		}
+		n1, isOverFlow1 := atoiForDoop(arguments[0])
+		n2, isOverFlow2 := atoiForDoop(arguments[2])
+		if isOverFlow1 || isOverFlow2 {
+
+		} else {
+
+			if operationOverFlow(n1, n2, 1) {
+
+			} else {
+
+			}
+		}
 	}
+
 }
 
-func isValidArguments(n1, n2 string) bool {
+func isValidValues(n1, n2 string) bool {
 	if ssNumeric(n1) && ssNumeric(n2) {
 		return true
 	}
 	return false
 }
 
-func isValid(a string) int {
+func getOperatorType(a string) int {
 	if a == "+" {
 		return 1
 	} else if a == "-" {
