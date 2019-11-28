@@ -11,7 +11,7 @@ func PrintNbrBase(nbr int, base string) {
 	convertNbrIntoBase(nbr, base)
 }
 
-func printStrForBase(str string) {
+func printStrForBase(str string) { //validated
 	mutableStr := []rune(str)
 	for s := range str {
 		z01.PrintRune(mutableStr[s])
@@ -24,8 +24,8 @@ func isValidBase(base string) bool {
 }
 
 func convertNbrIntoBase(n int, base string) []rune {
-	radix := getLenOfStrBase(base)
-	requiredLength := requiredLengthToConvert(n, radix)
+	// radix := getLenOfStrBase(base)
+	// requiredLength := requiredLengthToConvert(n, radix)
 
 	return nil
 }
