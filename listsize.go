@@ -1,17 +1,5 @@
 package piscine
 
-//NodeL is a struct
-type NodeL struct {
-	Data interface{}
-	Next *NodeL
-}
-
-//List is a struct
-type List struct {
-	Head *NodeL
-	Tail *NodeL
-}
-
 //ListSize function that return list size
 func ListSize(l *List) int {
 	if l.Head == nil {
