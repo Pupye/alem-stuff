@@ -1,11 +1,5 @@
 package piscine
 
-//NodeL is a struct
-type NodeL struct {
-	Data interface{}
-	Next *NodeL
-}
-
 //ListAt is function
 func ListAt(l *NodeL, pos int) *NodeL {
 	if pos < 0 {
