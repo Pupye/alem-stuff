@@ -1,11 +1,5 @@
 package piscine
 
-//NodeL is a struct
-type NodeL struct {
-	Data interface{}
-	Next *NodeL
-}
-
 //List is a struct
 type List struct {
 	Head *NodeL
