@@ -8,22 +8,27 @@ type TreeNode struct {
 
 //BTreeInsertData ....
 func BTreeInsertData(root *TreeNode, data string) *TreeNode {
+	if root.Data == data {
+		//dothing
+		return root
+	}
+
 	if root.Data > data {
 		if root.Left != nil {
-			return BTreeInsertData(root.Left, data)
+			BTreeInsertData(root.Left, data)
+		} else {
+			n := &TreeNode{Data: data, Parent: root}
+
+			root.Left = n
+			return root
 		}
+
+	} else if root.Right != nil {
+		BTreeInsertData(root.Right, data)
+	} else {
 		n := &TreeNode{Data: data, Parent: root}
-
-		root.Left = n
-		return n
-
+		root.Right = n
+		return root
 	}
-
-	if root.Right != nil {
-		return BTreeInsertData(root.Right, data)
-	}
-	n := &TreeNode{Data: data, Parent: root}
-	root.Right = n
-	return n
-
+	return root
 }
