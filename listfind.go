@@ -5,8 +5,11 @@ func CompStr(a, b interface{}) bool {
 }
 
 func ListFind(l *List, ref interface{}, comp func(a, b interface{}) bool) *interface{} {
-	current := l.Head
 
+	current := l.Head
+	if current == nil {
+		return nil
+	}
 	for current.Next != nil {
 		if comp(ref, current.Data) {
 			return &current.Data
