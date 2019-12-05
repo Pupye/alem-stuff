@@ -19,7 +19,3 @@ func helper(node *TreeNode, f func(...interface{}) (int, error), level int) {
 		helper(node.Right, f, level-1)
 	}
 }
-
-//so there is we need to something
-
-//
