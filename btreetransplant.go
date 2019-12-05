@@ -3,7 +3,11 @@ package piscine
 //BTreeTransplant is a function good ..
 func BTreeTransplant(root, node, rplc *TreeNode) *TreeNode {
 	if node.Parent == nil { // node here is root
-		root = rplc
+		node = rplc
+		if node != nil {
+			node.Parent = nil
+		}
+
 		return root
 	}
 
