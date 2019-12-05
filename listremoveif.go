@@ -12,6 +12,10 @@ func ListRemoveIf(l *List, data_ref interface{}) {
 
 	current := l.Head
 
+	if current == nil {
+		return
+	}
+
 	for current.Next != nil {
 		if current.Next.Data == data_ref {
 			current.Next = current.Next.Next
