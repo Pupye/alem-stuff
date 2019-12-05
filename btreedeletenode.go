@@ -13,10 +13,11 @@ func BTreeDeleteNode(root, node *TreeNode) *TreeNode {
 	if node.Left != nil && node.Right != nil {
 		inOrderSucc := BTreeMin(node.Right)
 		node.Data = inOrderSucc.Data
-		if inOrderSucc.Left != nil {
-			root = BTreeTransplant(root, inOrderSucc, inOrderSucc.Left)
+		if inOrderSucc.Right != nil {
+			root = BTreeTransplant(root, inOrderSucc, inOrderSucc.Right)
 			return root
 		}
+
 		root = BTreeTransplant(root, inOrderSucc, nil)
 		return root
 	}
