@@ -47,17 +47,30 @@ func isValidBase(base string) bool {
 func convertNbrIntoBase(n int, base string) { //validated
 	if n < 0 {
 		z01.PrintRune('-')
-		n = n * -1 //you have problems here
-	}
-	radix := getLenOfStrBase(base)
-	requiredLength := requiredLengthToConvert(n, radix)
-	count := requiredLength - 1
-	baseDigits := []rune(base)
-	for count >= 0 {
-		getReminderFrom := n / getPower(radix, count)
-		digit := getReminderFrom % radix
-		z01.PrintRune(baseDigits[digit])
-		count--
+		radix := getLenOfStrBase(base)
+		requiredLength := requiredLengthToConvert(n, radix)
+		count := requiredLength - 1
+		baseDigits := []rune(base)
+		for count >= 0 {
+			getReminderFrom := n / getPower(radix, count)
+			digit := (getReminderFrom % radix)
+			if digit < 0 {
+				digit *= -1
+			}
+			z01.PrintRune(baseDigits[digit])
+			count--
+		}
+	} else {
+		radix := getLenOfStrBase(base)
+		requiredLength := requiredLengthToConvert(n, radix)
+		count := requiredLength - 1
+		baseDigits := []rune(base)
+		for count >= 0 {
+			getReminderFrom := n / getPower(radix, count)
+			digit := getReminderFrom % radix
+			z01.PrintRune(baseDigits[digit])
+			count--
+		}
 	}
 }
 
@@ -74,10 +87,18 @@ func requiredLengthToConvert(n int, b int) int { //validated
 		return 1
 	}
 	length := 0
-	for n > 0 {
-		length++
-		n /= b
+	if n > 0 {
+		for n > 0 {
+			length++
+			n /= b
+		}
+	} else {
+		for n < 0 {
+			length++
+			n /= b
+		}
 	}
+
 	return length
 }
 
