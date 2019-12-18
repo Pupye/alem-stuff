@@ -47,7 +47,7 @@ func isValidBase(base string) bool {
 func convertNbrIntoBase(n int, base string) { //validated
 	if n < 0 {
 		z01.PrintRune('-')
-		n = n * -1
+		n = n * -1 //you have problems here
 	}
 	radix := getLenOfStrBase(base)
 	requiredLength := requiredLengthToConvert(n, radix)
@@ -70,7 +70,7 @@ func getPower(nb int, power int) int {
 }
 
 func requiredLengthToConvert(n int, b int) int { //validated
-	if n < b {
+	if n == 0 {
 		return 1
 	}
 	length := 0
