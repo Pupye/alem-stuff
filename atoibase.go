@@ -5,6 +5,11 @@ func AtoiBase(s string, base string) int {
 	if !isValidBaseForAtoiBase(base) {
 		return 0
 	}
+
+	if !isStringInBase(s, base) {
+		return 0
+	}
+
 	length := getLenOfAtoiBase(s)
 	radix := getLenOfAtoiBase(base)
 	baseRad := 1
@@ -64,4 +69,22 @@ func isValidBaseForAtoiBase(base string) bool {
 	}
 
 	return true
+}
+
+func isStringInBase(s, base string) bool {
+	for _, v := range s {
+		if !inBase(v, base) {
+			return false
+		}
+	}
+	return true
+}
+
+func inBase(v rune, base string) bool {
+	for _, char := range base {
+		if char == v {
+			return true
+		}
+	}
+	return false
 }
